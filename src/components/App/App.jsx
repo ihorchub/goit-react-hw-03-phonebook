@@ -55,7 +55,7 @@ export class App extends Component {
       <>
         <Wrapper>
           <Title>Phonebook</Title>
-          <ContactForm onSubmit={this.formSubmitHandler} />
+          <ContactForm formSubmit={this.formSubmitHandler} />
 
           <ContactsWrapper>
             <h2>Contacts</h2>

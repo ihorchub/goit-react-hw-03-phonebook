@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { Form, Field } from 'formik';
 
-export const Form = styled.form`
+export const AddContactForm = styled(Form)`
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -14,7 +15,7 @@ export const Label = styled.label`
   font-size: 24px;
 `;
 
-export const Input = styled.input`
+export const Input = styled(Field)`
   border-radius: 5px;
   border: 0.5px solid grey;
 
@@ -23,7 +24,7 @@ export const Input = styled.input`
   }
 `;
 
-export const Submit = styled.button`
+export const ButtonSubmit = styled.button`
   font-size: 16px;
   text-transform: uppercase;
   text-align: center;

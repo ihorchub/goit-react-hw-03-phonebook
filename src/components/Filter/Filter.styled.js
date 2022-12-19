@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Field } from 'formik';
 
 export const Label = styled.label`
   margin-top: 12px;
@@ -10,7 +11,7 @@ export const Label = styled.label`
   font-size: 20px;
 `;
 
-export const Input = styled.input`
+export const Input = styled(Field)`
   border-radius: 5px;
   border: 0.5px solid grey;
   background-color: #f0f0f0;
