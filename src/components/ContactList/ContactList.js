@@ -5,16 +5,18 @@ import { Delete, ListElem } from './ContactList.styled';
 export const ContactList = ({ contactList, onDeleteContact }) => {
   return (
     <ul>
-      {contactList.map(({ id, name, number }) => {
-        return (
+      {contactList.length === 0 ? (
+        <ListElem>no contacts</ListElem>
+      ) : (
+        contactList.map(({ id, name, number }) => (
           <ListElem key={id}>
             <ContactItem name={name} number={number} />
             <Delete type="button" onClick={() => onDeleteContact(id)}>
               Delete
             </Delete>
           </ListElem>
-        );
-      })}
+        ))
+      )}
     </ul>
   );
 };

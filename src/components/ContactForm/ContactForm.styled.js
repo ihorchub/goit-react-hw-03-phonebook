@@ -41,3 +41,8 @@ export const ButtonSubmit = styled.button`
     color: #fff;
   }
 `;
+
+export const Message = styled.p`
+  color: red;
+  font-size: 16px;
+`;

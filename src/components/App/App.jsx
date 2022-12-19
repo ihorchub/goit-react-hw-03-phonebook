@@ -7,15 +7,36 @@ import { GlobalStyle } from './GlobalStyles';
 import { ContactsWrapper, Title, Wrapper } from './App.styled';
 
 export class App extends Component {
-  state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+  static defaultProps = {
+    exempleContacts: [
+      { id: 'id-1', name: 'Fire department', number: '101' },
+      { id: 'id-2', name: 'Police', number: '102' },
+      { id: 'id-3', name: 'Ambulance', number: '103' },
+      { id: 'id-4', name: 'Gas service', number: '104' },
+      { id: 'id-5', name: 'Emergency service', number: '112' },
     ],
+  };
+
+  state = {
+    contacts: [],
     filter: '',
   };
+
+  componentDidUpdate(_, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
+  componentDidMount() {
+    const savedContacts = localStorage.getItem('contacts');
+
+    if (savedContacts !== null) {
+      this.setState({ contacts: JSON.parse(savedContacts) });
+    } else {
+      this.setState({ contacts: this.props.exempleContacts });
+    }
+  }
 
   formSubmitHandler = data => {
     const newContact = { id: nanoid(), ...data };

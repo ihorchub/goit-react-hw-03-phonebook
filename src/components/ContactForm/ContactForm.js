@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
 import * as yup from 'yup';
-import { Formik, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
 import {
   AddContactForm,
   Input,
   Label,
   ButtonSubmit,
 } from './ContactForm.styled';
+import { FormError } from './FormError';
 
 const namePattern =
   /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/;
@@ -14,27 +15,16 @@ const namePattern =
 const phonePattern =
   /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/;
 
-const schema = yup.object().shape({
+const validationSchema = yup.object().shape({
   name: yup
     .string()
     .matches(namePattern, 'Name is not valid')
-    .required('required'),
+    .required('this field is required'),
   number: yup
     .string()
     .matches(phonePattern, 'Phone number is not valid')
-    .required('required'),
+    .required('this field is required'),
 });
-
-const FormError = ({ name }) => {
-  return (
-    <ErrorMessage
-      name={name}
-      render={message => (
-        <p style={{ color: 'red', fontSize: 16 }}>{message}</p>
-      )}
-    />
-  );
-};
 
 const initialValues = {
   name: '',
@@ -50,7 +40,7 @@ export const ContactForm = ({ formSubmit }) => {
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={schema}
+      validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
       <AddContactForm>
